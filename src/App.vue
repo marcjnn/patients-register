@@ -18,8 +18,8 @@
             <small>visualizacion de pacientes</small>
           </article>
           <div class="buttons__container">
-            <button>icon Nuevo paciente</button>
-            <button>Descargar CSV</button>
+            <BaseButton :icon="['fas', 'plus']">Nuevo paciente</BaseButton>
+            <BaseButton :icon="['fas', 'file-csv']">Descargar CSV</BaseButton>
           </div>
           <ul>
             <li>icon</li>
@@ -57,7 +57,13 @@
   </div>
 </template>
 <script>
-// import '@assets/style/main.scss'
+import BaseButton from './components/BaseButton'
+export default {
+  name: 'App',
+  components: {
+    BaseButton,
+  },
+}
 </script>
 <style lang="scss">
 // reset
@@ -131,7 +137,7 @@ $colorTextMain: #444444;
     background-color: #eeeeee;
     font-size: 12px;
     font-weight: 500;
-    padding: 6px 12px;
+    padding: 12px 24px;
     text-align: left;
   }
   &__information {
@@ -150,6 +156,10 @@ $colorTextMain: #444444;
 
 .buttons {
   &__container {
+    margin: 12px 24px;
+    display: flex;
+    gap: 12px;
+    // justify-content: space-between;
   }
 }
 </style>
