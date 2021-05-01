@@ -8,6 +8,7 @@
 
 <script setup>
 export default {
+  name: 'BaseButton',
   inheritAttrs: false,
   props: {
     icon: {

@@ -91,7 +91,7 @@
     "ficha_dental": {
       "acadas_tratamiento": "inferios",
       "dientes_no_mover": [36, 48],
-      "estado": "solitado",
+      "estado": "solicitado",
       "clinica": "Dental Light",
       "objetivo_tratamiento": "Oclusión",
       "otros_datos": {
@@ -133,7 +133,7 @@
     "ficha_dental": {
       "acadas_tratamiento": "ambas",
       "dientes_no_mover": [18, 36],
-      "estado": "soclitado",
+      "estado": "solicitado",
       "clinica": "Dentix",
       "objetivo_tratamiento": "Estética",
       "otros_datos": {
@@ -154,7 +154,7 @@
     "ficha_dental": {
       "acadas_tratamiento": "ambas",
       "dientes_no_mover": [18, 36],
-      "estado": "Solucitado",
+      "estado": "solicitado",
       "clinica": "Dentix",
       "objetivo_tratamiento": "Oclusión",
       "otros_datos": {

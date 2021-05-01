@@ -12,7 +12,13 @@
         <!-- Listado de pacientes as variable? -->
         <h2 class="registry__header">Listado de Pacientes</h2>
         <div class="registry__information">
-          <BaseCard />
+          <BaseCard
+            ><template v-slot:image
+              ><font-awesome-icon :icon="['far', 'address-card']"
+            /></template>
+            <template v-slot:title>Listado de Pacientes</template>
+            <template v-slot:paragraph>Visualizacion de pacientes</template>
+          </BaseCard>
           <div class="buttons__container">
             <BaseButton :icon="['fas', 'plus']">Nuevo paciente</BaseButton>
             <BaseButton :icon="['fas', 'file-download']"
@@ -28,7 +34,8 @@
           </ul>
         </div>
         <div class="registry__search"><input type="text" /></div>
-        <table class="registry__patientsList">
+        <PatientsList />
+        <!-- <table class="registry__patientsList">
           <thead>
             <tr>
               <th>Nombre y apellidos icon</th>
@@ -39,16 +46,16 @@
             </tr>
           </thead>
           <tbody>
-            <!-- v-for with patients -->
-            <tr>
+            v-for with patients
+        <tr>
               <td>img + name + dob</td>
               <td>Clinica dental</td>
               <td>Estética y Oclusión</td>
               <td>Facturado</td>
               <td>Acciones drop-down</td>
             </tr>
-          </tbody>
-        </table>
+          </tbody> 
+        </table> -->
         <nav class="registry__pagination">pagination</nav>
       </section>
     </main>
@@ -57,11 +64,13 @@
 <script>
 import BaseButton from './components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
+import PatientsList from '@/components/PatientsList.vue'
 export default {
   name: 'App',
   components: {
     BaseButton,
     BaseCard,
+    PatientsList,
   },
 }
 </script>

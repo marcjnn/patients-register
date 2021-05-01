@@ -1,15 +1,26 @@
 <template>
   <article class="card">
-    <div class="icon__container">
-      <font-awesome-icon :icon="['far', 'address-card']" />
+    <div class="image__container">
+      <slot name="image"></slot>
+      <!-- <font-awesome-icon :icon="['far', 'address-card']" /> -->
     </div>
-    <h3 class="card__title">Listado de Pacientes</h3>
-    <p class="card__paragraph">Visualizacion de pacientes</p>
+    <!-- <h3 class="card__title">Listado de Pacientes</h3> -->
+    <h3 class="card__title"><slot name="title"></slot></h3>
+    <!-- <p class="card__paragraph">Visualizacion de pacientes</p> -->
+    <p class="card__paragraph"><slot name="paragraph"></slot></p>
   </article>
 </template>
 
 <script>
-export default {}
+export default {
+  name: 'BaseCard',
+  // inheritAttrs: false,
+  // props: {
+  //   icon: {
+  //     type: [String, Array],
+  //   },
+  // },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -24,7 +35,7 @@ export default {}
   justify-items: start;
   align-items: center;
   column-gap: 12px;
-  .icon__container {
+  .image__container {
     grid-area: card-image;
   }
   &__title {
