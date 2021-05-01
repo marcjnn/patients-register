@@ -8,6 +8,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faUserMd,
   faChevronDown,
+  faChevronRight,
+  faChevronLeft,
   faPlus,
   faFileDownload,
   faBars,
@@ -22,6 +24,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(
   faUserMd,
   faChevronDown,
+  faChevronRight,
+  faChevronLeft,
   faPlus,
   faFileDownload,
   faBars,

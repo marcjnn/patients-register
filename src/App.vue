@@ -36,29 +36,25 @@
           </ul>
         </div>
         <div class="registry__search"><input type="text" /></div>
-        <PatientsList />
-        <!-- <table class="registry__patientsList">
-          <thead>
-            <tr>
-              <th>Nombre y apellidos icon</th>
-              <th>Clinica icon</th>
-              <th>Objetivo tratamiento icon</th>
-              <th>Estado icon</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            v-for with patients
-        <tr>
-              <td>img + name + dob</td>
-              <td>Clinica dental</td>
-              <td>Estética y Oclusión</td>
-              <td>Facturado</td>
-              <td>Acciones drop-down</td>
-            </tr>
-          </tbody> 
-        </table> -->
-        <nav class="registry__pagination">pagination</nav>
+        <PatientsList :patients="patientsToDisplay" />
+        <nav class="registry__pagination">
+          <ul class="pagination">
+            <li class="pagination__page prevPage" @click="prevPage">
+              <font-awesome-icon :icon="['fas', 'chevron-left']" />
+            </li>
+            <li
+              v-for="n in pagesToDisplay"
+              :key="n"
+              class="pagination__page"
+              :class="{ 'pagination__page--current': currentPage === n }"
+            >
+              {{ n }}
+            </li>
+            <li class="pagination__page nextPage" @click="nextPage">
+              <font-awesome-icon :icon="['fas', 'chevron-right']" />
+            </li>
+          </ul>
+        </nav>
       </section>
     </main>
   </div>
@@ -67,12 +63,61 @@
 import BaseButton from './components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
 import PatientsList from '@/components/PatientsList.vue'
+import pacientes from '@/pacientes.json'
 export default {
   name: 'App',
   components: {
     BaseButton,
     BaseCard,
     PatientsList,
+  },
+  data() {
+    return {
+      pageSize: 5,
+      currentPage: 1,
+      patients: [],
+      numberOfPatients: Object.keys(pacientes).length,
+    }
+  },
+  created() {
+    this.createPatientsArray()
+  },
+  mounted() {
+    console.log(this.numberOfPatients)
+  },
+  updated() {
+    console.log(this.currentPage)
+  },
+  computed: {
+    patientsToDisplay() {
+      const indexToSplice = this.patients.length * this.currentPage
+      const patientsToDisplay = this.patients.filter((row, index) => {
+        let start = (this.currentPage - 1) * this.pageSize
+        let end = this.currentPage * this.pageSize
+        if (index >= start && index < end) return true
+      })
+      return patientsToDisplay
+    },
+    pagesToDisplay() {
+      return Math.ceil(this.patients.length / this.pageSize)
+    },
+  },
+  methods: {
+    createPatientsArray() {
+      for (let id in pacientes) {
+        this.patients.push({
+          ...pacientes[id],
+          id: id,
+        })
+      }
+    },
+    prevPage() {
+      if (this.currentPage > 1) this.currentPage--
+    },
+    nextPage() {
+      if (this.currentPage * this.pageSize < this.patients.length)
+        this.currentPage++
+    },
   },
 }
 </script>
@@ -86,6 +131,8 @@ export default {
 
 $colorLigthGrey: #eeeeee;
 $colorTextMain: #444444;
+$colorTextLight: #a0a0a0;
+$colorPrimary: #1a9cf2;
 
 // vue original
 #app {
@@ -165,6 +212,7 @@ $colorTextMain: #444444;
   }
   &__pagination {
     grid-area: registry-pagination;
+    margin: 24px 0;
   }
 }
 
@@ -173,7 +221,6 @@ $colorTextMain: #444444;
     margin: 12px 0px;
     display: flex;
     gap: 12px;
-    // justify-content: space-between;
   }
 }
 
@@ -181,5 +228,28 @@ $colorTextMain: #444444;
   list-style-type: none;
   display: flex;
   gap: 12px;
+}
+
+.prevPage,
+.nextPage {
+  cursor: pointer;
+}
+.pagination {
+  display: inline-flex;
+  list-style-type: none;
+  border: 1px solid $colorLigthGrey;
+  border-radius: 6px;
+  color: $colorTextLight;
+  &__page {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &--current {
+      background-color: $colorPrimary;
+      color: white;
+    }
+  }
 }
 </style>

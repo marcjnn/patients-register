@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       <!-- v-for with patients -->
-      <tr v-for="(patient, id) in patients" :key="id" class="table__row">
+      <tr v-for="patient in patients" :key="patient.id" class="table__row">
         <td class="table__cell">
           <BaseCard :initials="true">
             <template v-slot:image>
@@ -50,6 +50,7 @@
             class="state"
             :class="`state--${(classModifier = patient.ficha_dental.estado.toLowerCase())}`"
           >
+            >
             {{ patient.ficha_dental.estado }}</span
           >
         </td>
@@ -62,19 +63,17 @@
 <script>
 import BaseCard from '@/components/BaseCard.vue'
 import DropDown from '@/components/DropDown.vue'
-import pacientes from '@/pacientes.json'
 export default {
   name: 'PatientsList',
   components: {
     BaseCard,
     DropDown,
   },
-  computed: {
-    patients() {
-      return pacientes
+  props: {
+    patients: {
+      type: Array,
+      required: true,
     },
-    // classModifier() {
-    // },
   },
 }
 </script>
