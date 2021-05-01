@@ -20,8 +20,10 @@
             <template v-slot:paragraph>Visualizacion de pacientes</template>
           </BaseCard>
           <div class="buttons__container">
-            <BaseButton :icon="['fas', 'plus']">Nuevo paciente</BaseButton>
-            <BaseButton :icon="['fas', 'file-download']"
+            <BaseButton :icon="['fas', 'plus']" :outline="true"
+              >Nuevo paciente</BaseButton
+            >
+            <BaseButton :icon="['fas', 'file-download']" :outline="true"
               >Descargar CSV</BaseButton
             >
           </div>
@@ -153,6 +155,7 @@ $colorTextMain: #444444;
   }
   &__information {
     grid-area: registry-information;
+    margin: 12px 24px;
   }
   &__search {
     grid-area: registry-search;
@@ -167,7 +170,7 @@ $colorTextMain: #444444;
 
 .buttons {
   &__container {
-    margin: 12px 24px;
+    margin: 12px 0px;
     display: flex;
     gap: 12px;
     // justify-content: space-between;
@@ -175,7 +178,6 @@ $colorTextMain: #444444;
 }
 
 .visualMenu {
-  margin: 12px 24px;
   list-style-type: none;
   display: flex;
   gap: 12px;

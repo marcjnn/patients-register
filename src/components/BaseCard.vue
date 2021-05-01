@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 $colorPrimary: #1a9cf2;
 .card {
-  margin: 12px 24px;
+  // margin: 12px 24px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(2, auto);
@@ -66,6 +66,9 @@ $colorPrimary: #1a9cf2;
   font-weight: 600;
 }
 .registry__patientsList {
+  .card {
+    padding: 12px 0 12px 12px;
+  }
   .card__title {
     font-weight: 400;
     font-size: 14px;

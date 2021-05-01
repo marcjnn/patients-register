@@ -2,10 +2,10 @@
   <table class="registry__patientsList table">
     <thead>
       <tr>
-        <th>Nombre y apellidos icon</th>
-        <th>Clinica icon</th>
-        <th>Objetivo tratamiento icon</th>
-        <th>Estado icon</th>
+        <th>Nombre y apellidos</th>
+        <th>Clinica</th>
+        <th>Objetivo tratamiento</th>
+        <th>Estado</th>
         <th>Acciones</th>
       </tr>
     </thead>
@@ -53,7 +53,7 @@
             {{ patient.ficha_dental.estado }}</span
           >
         </td>
-        <td class="table__cell">Acciones drop-down</td>
+        <td class="table__cell"><DropDown /></td>
       </tr>
     </tbody>
   </table>
@@ -61,11 +61,13 @@
 
 <script>
 import BaseCard from '@/components/BaseCard.vue'
+import DropDown from '@/components/DropDown.vue'
 import pacientes from '@/pacientes.json'
 export default {
   name: 'PatientsList',
   components: {
     BaseCard,
+    DropDown,
   },
   computed: {
     patients() {
@@ -82,7 +84,7 @@ $colorLigthGrey: #eeeeee;
 $colorTextMain: #444444;
 
 .table {
-  margin: 12px 24px;
+  margin: 0px 24px;
   border-collapse: collapse;
   &__row {
     border: 1px solid $colorLigthGrey;
@@ -97,7 +99,7 @@ $colorTextMain: #444444;
   padding: 6px 12px;
   border-radius: 20px;
   display: inline-block;
-  width: 100%;
+  width: 90%;
   &--facturado {
     background-color: #fc625f;
   }
