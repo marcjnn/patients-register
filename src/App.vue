@@ -19,9 +19,9 @@
               >Descargar CSV</BaseButton
             >
           </div>
-          <ul>
-            <li>icon</li>
-            <li>icon</li>
+          <ul class="visualMenu">
+            <li><font-awesome-icon :icon="['fas', 'bars']" /></li>
+            <li><font-awesome-icon :icon="['fas', 'table']" /></li>
             <li>5</li>
             <li>10</li>
             <li>15</li>
@@ -81,7 +81,7 @@ $colorTextMain: #444444;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Nunito', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -163,5 +163,12 @@ $colorTextMain: #444444;
     gap: 12px;
     // justify-content: space-between;
   }
+}
+
+.visualMenu {
+  margin: 12px 24px;
+  list-style-type: none;
+  display: flex;
+  gap: 12px;
 }
 </style>
