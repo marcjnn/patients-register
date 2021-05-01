@@ -5,11 +5,11 @@
       <section class="main__sidebar"></section>
       <section class="main__registry">
         <!-- Listado de pacientes as variable? -->
-        <h2 class="registry__header">Listado de pacientes</h2>
+        <h2 class="registry__header">Listado de Pacientes</h2>
         <div class="registry__information">
           <article class="registry__infonote">
             icon
-            <p>Listado de pacientes</p>
+            <p>Listado de Pacientes</p>
             <small>visualizacion de pacientes</small>
           </article>
           <div class="buttons__container">
@@ -25,7 +25,7 @@
           </ul>
         </div>
         <div class="registry__search"><input type="text" /></div>
-        <table>
+        <table class="registry__patientsList">
           <thead>
             <tr>
               <th>Nombre y apellidos icon</th>
@@ -62,44 +62,68 @@
   box-sizing: border-box;
 }
 
+$colorLigthGrey: #eeeeee;
+$colorTextMain: #444444;
+
 // vue original
 #app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $colorTextMain;
 }
 
 // my styles
 .header {
-  background-color: black;
+  background-color: #282828;
   color: white;
 }
 
 .main {
-  display: grid;
-  grid-template-columns: 20% 1fr;
+  flex-grow: 1;
+  display: flex;
+  &__sidebar {
+    width: 20vw;
+  }
   &__registry {
+    width: 80vw;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: auto auto auto auto 1fr;
     grid-template-areas:
       'registry-header registry-header'
       'registry-information registry-search'
       'registry-patients registry-patients'
       'registry-pagination registry-pagination';
+    align-items: start;
+  }
+  &__registry {
+    // border-left: 1px solid $colorLigthGrey;
+    box-shadow: 2px 0 5px 1px $colorLigthGrey inset;
   }
 }
 
 .registry {
   &__header {
     grid-area: registry-header;
+    background-color: #eeeeee;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 12px;
+    text-align: left;
   }
   &__information {
     grid-area: registry-information;
   }
   &__search {
     grid-area: registry-search;
+  }
+  &__patientsList {
+    grid-area: registry-patients;
   }
   &__pagination {
     grid-area: registry-pagination;
