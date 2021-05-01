@@ -1,6 +1,6 @@
 <template>
   <article class="card">
-    <div class="image__container">
+    <div class="image__container" :class="[{ initials: initials }]">
       <slot name="image"></slot>
       <!-- <font-awesome-icon :icon="['far', 'address-card']" /> -->
     </div>
@@ -15,15 +15,17 @@
 export default {
   name: 'BaseCard',
   // inheritAttrs: false,
-  // props: {
-  //   icon: {
-  //     type: [String, Array],
-  //   },
-  // },
+  props: {
+    initials: {
+      type: Boolean,
+      default: false,
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
+$colorPrimary: #1a9cf2;
 .card {
   margin: 12px 24px;
   display: grid;
@@ -37,17 +39,40 @@ export default {
   column-gap: 12px;
   .image__container {
     grid-area: card-image;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__title {
     grid-area: card-title;
     font-size: 16px;
     font-weight: 700;
+    text-align: left;
   }
   &__paragraph {
     grid-area: card-paragraph;
     font-size: 14px;
     font-weight: 500;
     color: #a0a0a0;
+  }
+}
+
+.initials {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: $colorPrimary;
+  color: white;
+  font-weight: 600;
+}
+.registry__patientsList {
+  .card__title {
+    font-weight: 400;
+    font-size: 14px;
+  }
+  .card__paragraph {
+    font-weight: 400;
+    font-size: 12px;
   }
 }
 </style>

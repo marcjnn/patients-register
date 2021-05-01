@@ -13,7 +13,10 @@ import {
   faBars,
   faTable,
 } from '@fortawesome/free-solid-svg-icons'
-import { faAddressCard } from '@fortawesome/free-regular-svg-icons'
+import {
+  faAddressCard,
+  faCalendarAlt,
+} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
@@ -23,7 +26,8 @@ library.add(
   faFileDownload,
   faBars,
   faTable,
-  faAddressCard
+  faAddressCard,
+  faCalendarAlt
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
