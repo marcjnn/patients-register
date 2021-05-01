@@ -12,14 +12,12 @@
         <!-- Listado de pacientes as variable? -->
         <h2 class="registry__header">Listado de Pacientes</h2>
         <div class="registry__information">
-          <article class="registry__infonote">
-            icon
-            <p>Listado de Pacientes</p>
-            <small>visualizacion de pacientes</small>
-          </article>
+          <BaseCard />
           <div class="buttons__container">
             <BaseButton :icon="['fas', 'plus']">Nuevo paciente</BaseButton>
-            <BaseButton :icon="['fas', 'file-csv']">Descargar CSV</BaseButton>
+            <BaseButton :icon="['fas', 'file-download']"
+              >Descargar CSV</BaseButton
+            >
           </div>
           <ul>
             <li>icon</li>
@@ -58,10 +56,12 @@
 </template>
 <script>
 import BaseButton from './components/BaseButton'
+import BaseCard from '@/components/BaseCard.vue'
 export default {
   name: 'App',
   components: {
     BaseButton,
+    BaseCard,
   },
 }
 </script>
@@ -88,12 +88,14 @@ $colorTextMain: #444444;
   color: $colorTextMain;
 }
 
-// .icon {
-//   &--circle {
-//     border-radius: 50%;
-//     border: 1px solid red;
-//   }
-// }
+.icon {
+  // &--circle {
+  //   border-radius: 50%;
+  //   border: 1px solid red;
+  // }
+  &__container {
+  }
+}
 
 // my styles
 .header {

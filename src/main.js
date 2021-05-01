@@ -9,11 +9,12 @@ import {
   faUserMd,
   faChevronDown,
   faPlus,
-  faFileCsv,
+  faFileDownload,
 } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faUserMd, faChevronDown, faPlus, faFileCsv)
+library.add(faUserMd, faChevronDown, faPlus, faFileDownload, faAddressCard)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
