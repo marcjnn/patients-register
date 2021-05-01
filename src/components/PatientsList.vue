@@ -50,7 +50,6 @@
             class="state"
             :class="`state--${(classModifier = patient.ficha_dental.estado.toLowerCase())}`"
           >
-            >
             {{ patient.ficha_dental.estado }}</span
           >
         </td>

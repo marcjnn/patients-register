@@ -9,7 +9,6 @@
     <main class="main">
       <section class="main__sidebar"></section>
       <section class="main__registry">
-        <!-- Listado de pacientes as variable? -->
         <h2 class="registry__header">Listado de Pacientes</h2>
         <div class="registry__information">
           <BaseCard
@@ -28,11 +27,26 @@
             >
           </div>
           <ul class="visualMenu">
-            <li><font-awesome-icon :icon="['fas', 'bars']" /></li>
-            <li><font-awesome-icon :icon="['fas', 'table']" /></li>
-            <li>5</li>
-            <li>10</li>
-            <li>15</li>
+            <li ref="show-list">
+              <font-awesome-icon :icon="['fas', 'bars']" />
+            </li>
+            <li ref="show-card">
+              <font-awesome-icon :icon="['fas', 'table']" />
+            </li>
+            <li
+              v-for="n in pageSizeOptions"
+              :key="n"
+              @click="updatePageSize(n)"
+            >
+              {{ n }}
+            </li>
+            <!-- <li @click="getLiValue"></li>
+            <li ref="pag-10" @click="getLiValue">
+              <input type="button" value="10" />
+            </li>
+            <li ref="pag-15" @click="getLiValue">
+              <input type="button" value="15" />
+            </li> -->
           </ul>
         </div>
         <div class="registry__search"><input type="text" /></div>
@@ -74,6 +88,7 @@ export default {
   data() {
     return {
       pageSize: 5,
+      pageSizeOptions: [5, 10, 15],
       currentPage: 1,
       patients: [],
       numberOfPatients: Object.keys(pacientes).length,
@@ -117,6 +132,13 @@ export default {
     nextPage() {
       if (this.currentPage * this.pageSize < this.patients.length)
         this.currentPage++
+    },
+    getLiValue(ev) {
+      console.log(ev.target.value)
+    },
+    updatePageSize(value) {
+      this.pageSize = value
+      console.log(value)
     },
   },
 }
