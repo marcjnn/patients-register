@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <header class="header">Dr. Pablo Kehyaian</header>
+    <header class="header">
+      <font-awesome-icon :icon="['fas', 'user-md']" /><span
+        class="header__doctor"
+        >Dr. Pablo Kehyaian</span
+      ><font-awesome-icon :icon="['fas', 'chevron-down']" />
+    </header>
     <main class="main">
       <section class="main__sidebar"></section>
       <section class="main__registry">
@@ -77,10 +82,23 @@ $colorTextMain: #444444;
   color: $colorTextMain;
 }
 
+// .icon {
+//   &--circle {
+//     border-radius: 50%;
+//     border: 1px solid red;
+//   }
+// }
+
 // my styles
 .header {
+  padding: 12px 24px;
   background-color: #282828;
   color: white;
+  text-align: right;
+  font-size: 12px;
+  &__doctor {
+    margin: 0 6px;
+  }
 }
 
 .main {
