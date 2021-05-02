@@ -7,6 +7,9 @@ import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faUserMd,
+  faUserEdit,
+  faUserTimes,
+  faUserCheck,
   faChevronDown,
   faChevronRight,
   faChevronLeft,
@@ -23,6 +26,9 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
   faUserMd,
+  faUserEdit,
+  faUserTimes,
+  faUserCheck,
   faChevronDown,
   faChevronRight,
   faChevronLeft,

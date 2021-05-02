@@ -97,18 +97,36 @@
         >
           {{ patient.ficha_dental.estado }}
         </p>
-        <p></p>
+        <p class="patientCard__buttons">
+          <BaseButton
+            :icon="['fas', 'user-edit']"
+            :outline="true"
+            title="editar"
+          />
+          <BaseButton
+            :icon="['fas', 'user-check']"
+            :outline="true"
+            title="finalizar"
+          />
+          <BaseButton
+            :icon="['fas', 'user-times']"
+            :outline="true"
+            title="borrar"
+          />
+        </p>
       </div>
     </li>
   </ul>
 </template>
 
 <script>
+import BaseButton from '@/components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
 import DropDown from '@/components/DropDown.vue'
 export default {
   name: 'PatientsList',
   components: {
+    BaseButton,
     BaseCard,
     DropDown,
   },
@@ -198,10 +216,11 @@ $colorPrimary: #1a9cf2;
   &__clinic {
     text-align: left;
   }
-  &--goal {
+  &__goal {
     text-align: left;
   }
   &__state {
+    margin-top: 12px;
     background-color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -223,6 +242,11 @@ $colorPrimary: #1a9cf2;
     &--aceptado {
       color: #ff9670;
     }
+  }
+  &__buttons {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
   }
 }
 .state {

@@ -70,6 +70,10 @@ $colorLigthGrey: #eeeeee;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.1);
+  }
   &--outline {
     color: $colorPrimary;
     background-color: white;

@@ -75,7 +75,7 @@
   </div>
 </template>
 <script>
-import BaseButton from './components/BaseButton'
+import BaseButton from '@/components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
 import PatientsList from '@/components/PatientsList.vue'
 import pacientes from '@/pacientes.json'
