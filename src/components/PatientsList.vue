@@ -2,15 +2,20 @@
   <table v-if="viewMode === 'list'" class="registry__patientsList table">
     <thead>
       <tr>
-        <th>Nombre y apellidos</th>
-        <th>Clinica</th>
-        <th>Objetivo tratamiento</th>
-        <th>Estado</th>
-        <th>Acciones</th>
+        <th
+          v-for="(column, index) in columns"
+          :key="index"
+          class="table__header"
+        >
+          {{ column }}
+          <font-awesome-icon
+            v-if="column !== 'Acciones'"
+            :icon="['fas', 'sort']"
+          />
+        </th>
       </tr>
     </thead>
     <tbody>
-      <!-- v-for with patients -->
       <tr v-for="patient in patients" :key="patient.id" class="table__row">
         <td class="table__cell">
           <BaseCard :initials="true">
@@ -133,6 +138,17 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      columns: [
+        'Nombre y apellidos',
+        'Clinica',
+        'Objetivo tratamiento',
+        'Estado',
+        'Acciones',
+      ],
+    }
+  },
   methods: {
     createInitials(name, surname) {
       return `${name
@@ -148,6 +164,7 @@ export default {
 <style lang="scss" scoped>
 $colorLigthGrey: #eeeeee;
 $colorTextMain: #444444;
+$colorTextLight: #a0a0a0;
 $colorPrimary: #1a9cf2;
 
 .table {
@@ -182,6 +199,12 @@ $colorPrimary: #1a9cf2;
         color: #ff9670;
       }
     }
+  }
+  &__header {
+    font-size: 14px;
+    font-weight: 600;
+    color: $colorTextLight;
+    padding-bottom: 6px;
   }
   &__row {
     border: 1px solid $colorLigthGrey;
