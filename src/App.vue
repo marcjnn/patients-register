@@ -22,7 +22,10 @@
             <BaseButton :icon="['fas', 'plus']" :outline="true"
               >Nuevo paciente</BaseButton
             >
-            <BaseButton :icon="['fas', 'file-download']" :outline="true"
+            <BaseButton
+              :icon="['fas', 'file-download']"
+              :outline="true"
+              @click="exportToCSV('patients_registry', patients)"
               >Descargar CSV</BaseButton
             >
           </div>
@@ -156,6 +159,36 @@ export default {
     },
     updatePageSize(value) {
       this.pageSize = value
+    },
+    exportToCSV(filename, array) {
+      const header = [
+        ['Nombre y apellidos', 'Clinica', 'Objetivo tratamiento', 'Estado'],
+      ]
+      const patientsData = array.map((patient) => {
+        return [
+          this.patientsFullName(
+            patient.datos_paciente.nombre,
+            patient.datos_paciente.apellidos
+          ),
+          patient.ficha_dental.clinica,
+          patient.ficha_dental.objetivo_tratamiento,
+          patient.ficha_dental.estado,
+        ]
+      })
+      const data = [...header, ...patientsData]
+      console.log(data)
+      const csvData =
+        'data:text/csv;charset=utf-8,' + data.map((e) => e.join(',')).join('\n')
+      console.log(csvData)
+
+      // download using <a> 'download' tag
+      const encodedUri = encodeURI(csvData)
+      let secretLink = document.createElement('a')
+      secretLink.setAttribute('href', encodedUri)
+      secretLink.setAttribute('download', `${filename}.csv`)
+      document.body.appendChild(secretLink) // Required for FF
+
+      secretLink.click()
     },
   },
 }
