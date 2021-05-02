@@ -105,13 +105,9 @@ export default {
   },
   computed: {
     patientsToDisplay() {
-      const indexToSplice = this.patients.length * this.currentPage
-      const patientsToDisplay = this.patients.filter((row, index) => {
-        let start = (this.currentPage - 1) * this.pageSize
-        let end = this.currentPage * this.pageSize
-        if (index >= start && index < end) return true
-      })
-      return patientsToDisplay
+      const indexStart = (this.currentPage - 1) * this.pageSize
+      const indexEnd = this.currentPage * this.pageSize
+      return this.patients.slice(indexStart, indexEnd)
     },
     pagesToDisplay() {
       return Math.ceil(this.patients.length / this.pageSize)
