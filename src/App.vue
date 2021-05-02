@@ -50,7 +50,11 @@
           </ul>
         </div>
         <div class="registry__search">
-          <BaseInput :icon="['fas', 'search']" placeholder="Buscar ..." />
+          <BaseInput
+            :icon="['fas', 'search']"
+            v-model="search"
+            placeholder="Buscar ..."
+          />
         </div>
         <PatientsList :patients="patientsToDisplay" :viewMode="viewMode" />
         <nav class="registry__pagination">
@@ -98,16 +102,26 @@ export default {
       pageSize: 5,
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
+      search: '',
     }
   },
-  mounted() {
+  created() {
     this.createPatientsArray()
   },
   computed: {
     patientsToDisplay() {
       const indexStart = (this.currentPage - 1) * this.pageSize
       const indexEnd = this.currentPage * this.pageSize
-      return this.patients.slice(indexStart, indexEnd)
+      console.log(this.search)
+      const filteredPatients = this.patients.filter((patient) => {
+        const fullName = this.patientsFullName(
+          patient.datos_paciente.nombre,
+          patient.datos_paciente.apellidos
+        )
+        return fullName.toLowerCase().includes(this.search.toLowerCase())
+      })
+      console.log(filteredPatients)
+      return filteredPatients.slice(indexStart, indexEnd)
     },
     pagesToDisplay() {
       return Math.ceil(this.patients.length / this.pageSize)
@@ -121,6 +135,9 @@ export default {
           id: id,
         })
       }
+    },
+    patientsFullName(name, surname) {
+      return `${name} ${surname}`
     },
     updateViewMode(mode) {
       this.viewMode = mode

@@ -34,12 +34,6 @@ export default {
       type: Array,
     },
   },
-  // data() {
-  //   return {
-  //     reference: ''
-  //   }
-  // },
-
   methods: {
     updateValue(event) {
       this.$emit('input', event.target.value)
