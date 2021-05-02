@@ -19,7 +19,53 @@
             v-model="treatmentGoal"
           />
         </fieldset>
-        <fieldset class="fieldset">hola2</fieldset>
+        <fieldset class="fieldset">
+          <div class="options--column">
+            <h3 class="options__title">Recorte Alineadores</h3>
+            <BaseRadio
+              name="RecorteAlineadores"
+              value="dejando 1-3 mm de encía"
+              label="Recortar dejando 1-3 mm de encía"
+              @change="changeAligners"
+            />
+            <BaseRadio
+              name="RecorteAlineadores"
+              value="a nivel de los cuellos"
+              label="Recortar a nivel de los cuellos"
+              @change="changeAligners"
+            />
+          </div>
+          <div class="options--row">
+            <h3 class="options__title">¿Aligneadores Pasivos?</h3>
+            <BaseRadio
+              name="AlineadoresPasivos"
+              value="Si"
+              label="Si"
+              @change="changeCutout"
+            />
+            <BaseRadio
+              name="AlineadoresPasivos"
+              value="No"
+              label="No"
+              @change="changeCutout"
+            />
+          </div>
+          <div class="options--row">
+            <h3 class="options__title">¿SecretAligner?</h3>
+            <BaseRadio
+              name="SecretRetrainer"
+              value="Si"
+              label="Si"
+              @change="changeRetrainer"
+            />
+            <BaseRadio
+              name="SecretRetrainer"
+              value="No"
+              label="No"
+              @change="changeRetrainer"
+            />
+          </div>
+        </fieldset>
       </form>
     </div>
   </section>
@@ -27,11 +73,13 @@
 
 <script>
 import BaseInput from '@/components/BaseInput.vue'
+import BaseRadio from '@/components/BaseRadio.vue'
 import BaseSelect from '@/components/BaseSelect.vue'
 export default {
   name: 'NewPatient',
   components: {
     BaseInput,
+    BaseRadio,
     BaseSelect,
   },
   props: {
@@ -46,9 +94,22 @@ export default {
       genderOptions: ['Masculino', 'Femenino'],
       treatmentGoalOptions: ['Estética', 'Oclusión', 'Estética y Oclusión'],
       treatmentGoal: '',
+      cutout: '',
+      aligners: '',
+      retrainer: '',
     }
   },
-  methods: {},
+  methods: {
+    changeCutout(newValue) {
+      this.cutout = newValue
+    },
+    changeAligners(newValue) {
+      this.aligners = newValue
+    },
+    changeRetrainer(newValue) {
+      this.retrainer = newValue
+    },
+  },
 }
 </script>
 
@@ -79,18 +140,43 @@ $colorLigthGrey: #eeeeee;
   }
 }
 .form {
+  border-top: 1px solid $colorLigthGrey;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, auto);
   align-items: start;
+  justify-items: start;
 }
 
 .fieldset {
   padding: 6px 0;
   border: none;
-  border-top: 1px solid $colorLigthGrey;
   &--first {
     grid-row: span 2;
+  }
+}
+
+.options {
+  &--column {
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    column-gap: 12px;
+    padding: 6px 12px;
+  }
+  &--row {
+    font-size: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
+    padding: 6px 12px;
+  }
+
+  &__title {
+    text-align: left;
+    font-size: 14px;
+    width: 100%;
+    margin: 12px 0 6px;
   }
 }
 </style>

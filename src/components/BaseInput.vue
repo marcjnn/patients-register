@@ -14,6 +14,7 @@
 
 <script>
 export default {
+  name: 'BaseInput',
   inheritAttrs: false,
   props: {
     type: {
