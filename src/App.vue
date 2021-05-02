@@ -19,7 +19,10 @@
             <template v-slot:paragraph>Visualizacion de pacientes</template>
           </BaseCard>
           <div class="buttons__container">
-            <BaseButton :icon="['fas', 'plus']" :outline="true"
+            <BaseButton
+              :icon="['fas', 'plus']"
+              :outline="true"
+              @click="addNewPatient"
               >Nuevo paciente</BaseButton
             >
             <BaseButton
@@ -80,6 +83,7 @@
           </ul>
         </nav>
       </section>
+      <NewPatient :open="modal" />
     </main>
   </div>
 </template>
@@ -87,6 +91,7 @@
 import BaseButton from '@/components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseInput from '@/components/BaseInput'
+import NewPatient from '@/components/NewPatient.vue'
 import PatientsList from '@/components/PatientsList.vue'
 import pacientes from '@/pacientes.json'
 export default {
@@ -95,6 +100,7 @@ export default {
     BaseButton,
     BaseCard,
     BaseInput,
+    NewPatient,
     PatientsList,
   },
   data() {
@@ -106,6 +112,7 @@ export default {
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
       search: '',
+      modal: true,
     }
   },
   created() {
@@ -189,6 +196,9 @@ export default {
       document.body.appendChild(secretLink) // Required for FF
 
       secretLink.click()
+    },
+    addNewPatient() {
+      this.modal = true
     },
   },
 }

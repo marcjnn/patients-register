@@ -48,30 +48,65 @@ $colorPrimary: #1a9cf2;
 
 $fontMain: 'Nunito', Helvetica, Arial, sans-serif;
 
+// adjust for search
+// .input {
+//   &__container {
+//     font-size: 14px;
+//     display: flex;
+//     align-items: center;
+//     gap: 12px;
+//     padding: 6px 12px;
+//     background-color: $colorLigthGrey;
+//     border-radius: 6px;
+//   }
+//   &__input {
+//     border: none;
+//     border-radius: 6px;
+//     background-color: $colorLigthGrey;
+//     padding: 6px;
+//     flex-grow: 1;
+//     &:focus {
+//       outline: none;
+//       background-color: white;
+//     }
+//     &::placeholder {
+//       color: $colorTextLight;
+//       font-family: $fontMain;
+//     }
+//   }
+// }
+
 .input {
   &__container {
+    margin-top: 12px;
     font-size: 14px;
     display: flex;
-    align-items: center;
-    gap: 12px;
+    flex-direction: column;
+    align-items: left;
     padding: 6px 12px;
-    background-color: $colorLigthGrey;
     border-radius: 6px;
   }
+  &__label {
+    font-weight: 600;
+    text-align: left;
+  }
   &__input {
-    border: none;
+    border: 1px solid $colorLigthGrey;
     border-radius: 6px;
-    background-color: $colorLigthGrey;
-    padding: 6px;
-    flex-grow: 1;
+    padding: 12px;
+    background-image: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 100%);
+    // flex-grow: 1;
     &:focus {
       outline: none;
-      background-color: white;
     }
     &::placeholder {
       color: $colorTextLight;
       font-family: $fontMain;
     }
   }
+}
+
+.fieldset .input__container:first-child {
+  margin-top: 0;
 }
 </style>
