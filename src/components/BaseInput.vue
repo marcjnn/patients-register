@@ -1,5 +1,5 @@
 <template>
-  <div class="input__container">
+  <div class="input__container" :class="{ withIcon: icon }">
     <label v-if="label" class="input__label">{{ label }}</label>
     <font-awesome-icon v-if="icon" :icon="icon" class="input__icon" />
     <input
@@ -49,34 +49,6 @@ $colorPrimary: #1a9cf2;
 
 $fontMain: 'Nunito', Helvetica, Arial, sans-serif;
 
-// adjust for search
-// .input {
-//   &__container {
-//     font-size: 14px;
-//     display: flex;
-//     align-items: center;
-//     gap: 12px;
-//     padding: 6px 12px;
-//     background-color: $colorLigthGrey;
-//     border-radius: 6px;
-//   }
-//   &__input {
-//     border: none;
-//     border-radius: 6px;
-//     background-color: $colorLigthGrey;
-//     padding: 6px;
-//     flex-grow: 1;
-//     &:focus {
-//       outline: none;
-//       background-color: white;
-//     }
-//     &::placeholder {
-//       color: $colorTextLight;
-//       font-family: $fontMain;
-//     }
-//   }
-// }
-
 .input {
   &__container {
     margin-top: 12px;
@@ -109,5 +81,33 @@ $fontMain: 'Nunito', Helvetica, Arial, sans-serif;
 
 .fieldset .input__container:first-child {
   margin-top: 0;
+}
+
+// adjust for search
+.withIcon.input__container {
+  font-size: 14px;
+  // display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  background-color: $colorLigthGrey;
+  border-radius: 6px;
+  .input__input {
+    border: none;
+    border-radius: 6px;
+    background-color: $colorLigthGrey;
+    background-image: none;
+    padding: 6px;
+    flex-grow: 1;
+    &:focus {
+      outline: none;
+      background-color: white;
+    }
+    &::placeholder {
+      color: $colorTextLight;
+      font-family: $fontMain;
+    }
+  }
 }
 </style>

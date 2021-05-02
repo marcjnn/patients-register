@@ -112,7 +112,7 @@ export default {
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
       search: '',
-      modal: true,
+      modal: false,
     }
   },
   created() {
