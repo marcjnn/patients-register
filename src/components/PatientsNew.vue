@@ -201,7 +201,7 @@ $colorLigthGrey: #eeeeee;
   border-radius: 12px;
   &__container {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     position: absolute;
     top: 0;
     right: 0;

@@ -6,6 +6,7 @@ import router from './router'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
+  faUser,
   faUserMd,
   faUserEdit,
   faUserTimes,
@@ -30,6 +31,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(
+  faUser,
   faUserMd,
   faUserEdit,
   faUserTimes,

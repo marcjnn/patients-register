@@ -65,7 +65,7 @@
         <PatientsList
           :patients="patientsToDisplay"
           :viewMode="viewMode"
-          @click="openPatientsCard"
+          @openPatientsCard="openPatientsCard"
         />
         <nav class="registry__pagination">
           <ul class="pagination">
@@ -87,8 +87,12 @@
           </ul>
         </nav>
       </section>
-      <PatientsNew :open="PatientsNew" @close="closePatientsNewModal" />
-      <PatientsCard :open="patientsCard" @close="closePatientsCardModal" />
+      <PatientsNew :open="patientsNew" @close="closePatientsNewModal" />
+      <PatientsCard
+        :open="patientsCard"
+        @close="closePatientsCardModal"
+        :patient="selectedPatient"
+      />
     </main>
   </div>
 </template>
@@ -119,7 +123,8 @@ export default {
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
       search: '',
-      PatientsNew: false,
+      patientsNew: false,
+      selectedPatient: {},
       patientsCard: false,
     }
   },
@@ -206,12 +211,16 @@ export default {
       secretLink.click()
     },
     addPatientsNew() {
-      this.PatientsNew = true
+      this.patientsNew = true
     },
     closePatientsNewModal() {
-      this.PatientsNew = false
+      this.patientsNew = false
     },
-    openPatientsCard() {
+    openPatientsCard(id) {
+      console.log(id)
+      console.log('clicked')
+      this.selectedPatient = this.patients.find((patient) => patient.id === id)
+      console.log(this.selectedPatient)
       this.patientsCard = true
     },
     closePatientsCardModal() {
