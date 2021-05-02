@@ -18,7 +18,7 @@
     <tbody>
       <tr v-for="patient in patients" :key="patient.id" class="table__row">
         <td class="table__cell">
-          <BaseCard :initials="true">
+          <BaseCard :initials="true" @click="openPatientsCard">
             <template v-slot:image>
               <div>
                 {{
@@ -156,6 +156,9 @@ export default {
         .splice(0, 1)
         .join('')
         .toUpperCase()}${surname.split('').splice(0, 1).join('').toUpperCase()}`
+    },
+    openPatientsCard() {
+      this.$emit('openPatientsCard')
     },
   },
 }

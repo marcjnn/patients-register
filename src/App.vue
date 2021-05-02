@@ -22,7 +22,7 @@
             <BaseButton
               :icon="['fas', 'plus']"
               :outline="true"
-              @click="addNewPatient"
+              @click="addPatientsNew"
               >Nuevo paciente</BaseButton
             >
             <BaseButton
@@ -62,7 +62,11 @@
             placeholder="Buscar ..."
           />
         </div>
-        <PatientsList :patients="patientsToDisplay" :viewMode="viewMode" />
+        <PatientsList
+          :patients="patientsToDisplay"
+          :viewMode="viewMode"
+          @click="openPatientsCard"
+        />
         <nav class="registry__pagination">
           <ul class="pagination">
             <li class="pagination__page" @click="prevPage">
@@ -83,7 +87,8 @@
           </ul>
         </nav>
       </section>
-      <NewPatient :open="modal" @close="closeModal" />
+      <PatientsNew :open="PatientsNew" @close="closePatientsNewModal" />
+      <PatientsCard :open="patientsCard" @close="closePatientsCardModal" />
     </main>
   </div>
 </template>
@@ -91,7 +96,8 @@
 import BaseButton from '@/components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseInput from '@/components/BaseInput'
-import NewPatient from '@/components/NewPatient.vue'
+import PatientsNew from '@/components/PatientsNew.vue'
+import PatientsCard from '@/components/PatientsCard.vue'
 import PatientsList from '@/components/PatientsList.vue'
 import pacientes from '@/pacientes.json'
 export default {
@@ -100,7 +106,8 @@ export default {
     BaseButton,
     BaseCard,
     BaseInput,
-    NewPatient,
+    PatientsNew,
+    PatientsCard,
     PatientsList,
   },
   data() {
@@ -112,7 +119,8 @@ export default {
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
       search: '',
-      modal: false,
+      PatientsNew: false,
+      patientsCard: false,
     }
   },
   created() {
@@ -197,11 +205,17 @@ export default {
 
       secretLink.click()
     },
-    addNewPatient() {
-      this.modal = true
+    addPatientsNew() {
+      this.PatientsNew = true
     },
-    closeModal() {
-      this.modal = false
+    closePatientsNewModal() {
+      this.PatientsNew = false
+    },
+    openPatientsCard() {
+      this.patientsCard = true
+    },
+    closePatientsCardModal() {
+      this.patientsCard = false
     },
   },
 }
