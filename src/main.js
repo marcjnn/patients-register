@@ -17,6 +17,7 @@ import {
   faFileDownload,
   faBars,
   faTable,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons'
 import {
   faAddressCard,
@@ -36,6 +37,7 @@ library.add(
   faFileDownload,
   faBars,
   faTable,
+  faSearch,
   faAddressCard,
   faCalendarAlt
 )

@@ -49,7 +49,9 @@
             </li>
           </ul>
         </div>
-        <div class="registry__search"><input type="text" /></div>
+        <div class="registry__search">
+          <BaseInput :icon="['fas', 'search']" placeholder="Buscar ..." />
+        </div>
         <PatientsList :patients="patientsToDisplay" :viewMode="viewMode" />
         <nav class="registry__pagination">
           <ul class="pagination">
@@ -77,6 +79,7 @@
 <script>
 import BaseButton from '@/components/BaseButton'
 import BaseCard from '@/components/BaseCard.vue'
+import BaseInput from '@/components/BaseInput'
 import PatientsList from '@/components/PatientsList.vue'
 import pacientes from '@/pacientes.json'
 export default {
@@ -84,14 +87,15 @@ export default {
   components: {
     BaseButton,
     BaseCard,
+    BaseInput,
     PatientsList,
   },
   data() {
     return {
       patients: [],
-      viewMode: 'cards',
+      viewMode: 'list',
       viewModeOptions: ['list', 'cards'],
-      pageSize: 10,
+      pageSize: 5,
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
     }
@@ -154,25 +158,18 @@ $colorTextMain: #444444;
 $colorTextLight: #a0a0a0;
 $colorPrimary: #1a9cf2;
 
+$fontMain: 'Nunito', Helvetica, Arial, sans-serif;
+
 // vue original
 #app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Nunito', Helvetica, Arial, sans-serif;
+  font-family: $fontMain;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $colorTextMain;
-}
-
-.icon {
-  // &--circle {
-  //   border-radius: 50%;
-  //   border: 1px solid red;
-  // }
-  &__container {
-  }
 }
 
 // my styles
@@ -226,6 +223,7 @@ $colorPrimary: #1a9cf2;
   }
   &__search {
     grid-area: registry-search;
+    margin: 12px 24px;
   }
   &__patientsList {
     grid-area: registry-patients;
