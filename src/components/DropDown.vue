@@ -7,7 +7,7 @@
       :dropdown="true"
       >Acciones
     </BaseButton>
-    <ul id="myDropdown" v-show="menuVisible" class="dropdown__content">
+    <ul v-show="menuVisible" class="dropdown__content">
       <li class="dropdown__item">Editar</li>
       <li class="dropdown__item">Finalizar</li>
       <li class="dropdown__item">Borrar</li>
@@ -19,12 +19,6 @@
 import BaseButton from '@/components/BaseButton'
 export default {
   name: 'DropDown',
-  // inheritAttrs: false,
-  // props: {
-  //   icon: {
-  //     type: [String, Array],
-  //   },
-  // },
   components: {
     BaseButton,
   },
@@ -45,11 +39,11 @@ export default {
       }
     },
   },
+  // document based methods - for closing the dropdown when clicked outside
   created() {
     document.addEventListener('click', this.documentClick)
   },
   destroyed() {
-    // important to clean up!!
     document.removeEventListener('click', this.documentClick)
   },
 }
@@ -58,8 +52,8 @@ export default {
 <style lang="scss" scoped>
 $colorLigthGrey: #eeeeee;
 $colorPrimary: #1a9cf2;
+
 .dropdown {
-  // float: right;
   position: relative;
   display: inline-block;
   &__content {

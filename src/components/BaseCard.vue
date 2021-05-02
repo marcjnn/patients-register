@@ -2,11 +2,8 @@
   <article class="card">
     <div class="image__container" :class="[{ initials: initials }]">
       <slot name="image"></slot>
-      <!-- <font-awesome-icon :icon="['far', 'address-card']" /> -->
     </div>
-    <!-- <h3 class="card__title">Listado de Pacientes</h3> -->
     <h3 class="card__title"><slot name="title"></slot></h3>
-    <!-- <p class="card__paragraph">Visualizacion de pacientes</p> -->
     <p class="card__paragraph"><slot name="paragraph"></slot></p>
   </article>
 </template>
@@ -14,7 +11,6 @@
 <script>
 export default {
   name: 'BaseCard',
-  // inheritAttrs: false,
   props: {
     initials: {
       type: Boolean,
@@ -26,8 +22,8 @@ export default {
 
 <style lang="scss" scoped>
 $colorPrimary: #1a9cf2;
+
 .card {
-  // margin: 12px 24px;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: repeat(2, auto);
@@ -65,6 +61,8 @@ $colorPrimary: #1a9cf2;
   color: white;
   font-weight: 600;
 }
+
+// comoponent-based modifications
 .registry__patientsList {
   .card {
     padding: 12px 0 12px 12px;
@@ -78,6 +76,7 @@ $colorPrimary: #1a9cf2;
     font-size: 12px;
   }
 }
+
 .patientCard {
   .card {
     padding: 0;

@@ -17,17 +17,10 @@
             <template v-slot:image>
               <div>
                 {{
-                  patient.datos_paciente.nombre
-                    .split('')
-                    .splice(0, 1)
-                    .join('')
-                    .toUpperCase()
-                }}{{
-                  patient.datos_paciente.apellidos
-                    .split('')
-                    .splice(0, 1)
-                    .join('')
-                    .toUpperCase()
+                  createInitials(
+                    patient.datos_paciente.nombre,
+                    patient.datos_paciente.apellidos
+                  )
                 }}
               </div>
             </template>
@@ -203,6 +196,7 @@ $colorPrimary: #1a9cf2;
     }
   }
 }
+
 .patientCard {
   padding: 12px;
   border: 1px solid $colorPrimary;
@@ -249,6 +243,7 @@ $colorPrimary: #1a9cf2;
     justify-content: space-between;
   }
 }
+
 .state {
   color: white;
   padding: 6px 12px;
@@ -274,6 +269,7 @@ $colorPrimary: #1a9cf2;
     background-color: #ff9670;
   }
 }
+
 .basecard {
   &__container {
     flex-grow: 1;

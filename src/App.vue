@@ -109,10 +109,7 @@ export default {
     this.createPatientsArray()
   },
   computed: {
-    patientsToDisplay() {
-      const indexStart = (this.currentPage - 1) * this.pageSize
-      const indexEnd = this.currentPage * this.pageSize
-      console.log(this.search)
+    filteredPatients() {
       const filteredPatients = this.patients.filter((patient) => {
         const fullName = this.patientsFullName(
           patient.datos_paciente.nombre,
@@ -120,11 +117,16 @@ export default {
         )
         return fullName.toLowerCase().includes(this.search.toLowerCase())
       })
-      console.log(filteredPatients)
-      return filteredPatients.slice(indexStart, indexEnd)
+      return filteredPatients
+    },
+    patientsToDisplay() {
+      const indexStart = (this.currentPage - 1) * this.pageSize
+      const indexEnd = this.currentPage * this.pageSize
+
+      return this.filteredPatients.slice(indexStart, indexEnd)
     },
     pagesToDisplay() {
-      return Math.ceil(this.patients.length / this.pageSize)
+      return Math.ceil(this.filteredPatients.length / this.pageSize)
     },
   },
   methods: {
@@ -152,18 +154,13 @@ export default {
     setAsCurrentPage(n) {
       this.currentPage = n
     },
-    getLiValue(ev) {
-      console.log(ev.target.value)
-    },
     updatePageSize(value) {
       this.pageSize = value
-      console.log(value)
     },
   },
 }
 </script>
 <style lang="scss">
-// reset
 * {
   margin: 0;
   padding: 0;
@@ -177,7 +174,6 @@ $colorPrimary: #1a9cf2;
 
 $fontMain: 'Nunito', Helvetica, Arial, sans-serif;
 
-// vue original
 #app {
   min-height: 100vh;
   display: flex;
@@ -189,7 +185,6 @@ $fontMain: 'Nunito', Helvetica, Arial, sans-serif;
   color: $colorTextMain;
 }
 
-// my styles
 .header {
   padding: 12px 24px;
   background-color: #282828;
@@ -220,7 +215,6 @@ $fontMain: 'Nunito', Helvetica, Arial, sans-serif;
     align-items: start;
   }
   &__registry {
-    // border-left: 1px solid $colorLigthGrey;
     box-shadow: 2px 0 5px 1px $colorLigthGrey inset;
   }
 }

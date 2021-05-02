@@ -4,7 +4,6 @@
     <font-awesome-icon v-if="icon" :icon="icon" class="input__icon" />
     <input
       :type="type"
-      :value="value"
       :placeholder="placeholder"
       @input="updateValue"
       v-bind="$attrs"
@@ -29,7 +28,6 @@ export default {
       type: String,
       default: '',
     },
-    value: [String, Number],
     icon: {
       type: Array,
     },

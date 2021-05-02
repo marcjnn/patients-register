@@ -28,7 +28,7 @@ export default {
   inheritAttrs: false,
   props: {
     icon: {
-      type: [String, Array],
+      type: Array,
     },
     iconSide: {
       type: String,
@@ -58,6 +58,7 @@ export default {
 $colorPrimary: #1a9cf2;
 $colorTextMain: #444444;
 $colorLigthGrey: #eeeeee;
+
 .btn {
   display: flex;
   gap: 6px;
