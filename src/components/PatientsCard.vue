@@ -1,6 +1,6 @@
 <template>
   <section class="modal__container" v-if="open" @click.self="closeModalWindow">
-    <div class="modal">
+    <div class="modal" ref="pdf">
       <div class="modal__header">
         <h2 class="newPatient__title">Ficha Paciente</h2>
         <div class="icon__container">
@@ -14,7 +14,6 @@
       </div>
       <article class="patient__info">
         <p class="patient__image">
-          <!-- change icon to not a doctor -->
           <font-awesome-icon :icon="['fas', 'user']" />
         </p>
         <div class="patient__data">
@@ -313,5 +312,12 @@ $colorTextMain: #444444;
       border-radius: 50%;
     }
   }
+}
+
+.buttons {
+  margin: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
