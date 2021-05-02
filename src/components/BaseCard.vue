@@ -78,4 +78,9 @@ $colorPrimary: #1a9cf2;
     font-size: 12px;
   }
 }
+.patientCard {
+  .card {
+    padding: 0;
+  }
+}
 </style>

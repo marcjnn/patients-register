@@ -26,31 +26,31 @@
               >Descargar CSV</BaseButton
             >
           </div>
-          <ul class="visualMenu">
-            <li ref="show-list">
-              <font-awesome-icon :icon="['fas', 'bars']" />
-            </li>
-            <li ref="show-card">
-              <font-awesome-icon :icon="['fas', 'table']" />
+          <ul class="visualOptions">
+            <li
+              v-for="mode in viewModeOptions"
+              :key="mode"
+              @click="updateViewMode(mode)"
+              class="visualOptions__item"
+              :title="`modo ${mode === 'list' ? 'lista' : 'tarjetas'}`"
+            >
+              <font-awesome-icon
+                :icon="mode === 'list' ? ['fas', 'bars'] : ['fas', 'table']"
+              />
             </li>
             <li
               v-for="n in pageSizeOptions"
               :key="n"
               @click="updatePageSize(n)"
+              class="visualOptions__item"
+              :title="`ver ${n} resultados por página`"
             >
               {{ n }}
             </li>
-            <!-- <li @click="getLiValue"></li>
-            <li ref="pag-10" @click="getLiValue">
-              <input type="button" value="10" />
-            </li>
-            <li ref="pag-15" @click="getLiValue">
-              <input type="button" value="15" />
-            </li> -->
           </ul>
         </div>
         <div class="registry__search"><input type="text" /></div>
-        <PatientsList :patients="patientsToDisplay" />
+        <PatientsList :patients="patientsToDisplay" :viewMode="viewMode" />
         <nav class="registry__pagination">
           <ul class="pagination">
             <li class="pagination__page" @click="prevPage">
@@ -88,11 +88,12 @@ export default {
   },
   data() {
     return {
-      pageSize: 5,
+      patients: [],
+      viewMode: 'cards',
+      viewModeOptions: ['list', 'cards'],
+      pageSize: 10,
       pageSizeOptions: [5, 10, 15],
       currentPage: 1,
-      patients: [],
-      numberOfPatients: Object.keys(pacientes).length,
     }
   },
   mounted() {
@@ -116,6 +117,9 @@ export default {
           id: id,
         })
       }
+    },
+    updateViewMode(mode) {
+      this.viewMode = mode
     },
     prevPage() {
       if (this.currentPage > 1) this.currentPage--
@@ -240,10 +244,13 @@ $colorPrimary: #1a9cf2;
   }
 }
 
-.visualMenu {
+.visualOptions {
   list-style-type: none;
   display: flex;
   gap: 12px;
+  &__item {
+    cursor: pointer;
+  }
 }
 
 .pagination {
