@@ -1,22 +1,50 @@
 <template>
-  <section class="modal__container" v-if="open">
+  <section class="modal__container" v-if="open" @click.self="closeModalWindow">
     <div class="modal">
-      <h2 class="newPatient__title">Nuevo Paciente</h2>
+      <div class="modal__header">
+        <h2 class="newPatient__title">Nuevo Paciente</h2>
+        <div class="icon__container">
+          <BaseButton
+            :outline="true"
+            :icon="['far', 'window-close']"
+            @click="closeModalWindow"
+            title="cierra la ventana"
+          />
+        </div>
+      </div>
       <form action="" method="" class="form" v-on:submit.prevent>
         <fieldset class="fieldset fieldset--first">
-          <BaseInput label="Nombre:" placeholder="Nombre del paciente..." />
+          <BaseInput
+            label="Nombre:"
+            placeholder="Nombre del paciente..."
+            v-model="patient.name"
+          />
           <BaseInput
             label="Apellidos:"
             placeholder="Apellidos del paciente..."
+            v-model="patient.lastname"
           />
-          <BaseInput label="Clinica:" placeholder="Cinica ..." />
+          <BaseInput
+            type="date"
+            label="Fecha de nacimiento"
+            v-model="patient.dob"
+          />
+          <BaseInput
+            label="Clinica:"
+            placeholder="Cinica ..."
+            v-model="patient.clinic"
+          />
         </fieldset>
         <fieldset class="fieldset">
-          <BaseSelect label="Sexo" :options="genderOptions" v-model="gender" />
+          <BaseSelect
+            label="Sexo"
+            :options="genderOptions"
+            v-model="patient.gender"
+          />
           <BaseSelect
             label="Objetivo del tratamiento"
             :options="treatmentGoalOptions"
-            v-model="treatmentGoal"
+            v-model="patient.treatmentGoal"
           />
         </fieldset>
         <fieldset class="fieldset">
@@ -67,17 +95,42 @@
           </div>
         </fieldset>
       </form>
+      <div class="buttons">
+        <BaseButton
+          :outline="true"
+          :icon="['far', 'save']"
+          @click="savePatientData"
+          title="guarda paciente en base de datos"
+          >Guardar</BaseButton
+        >
+        <BaseButton
+          :outline="true"
+          :icon="['far', 'window-close']"
+          @click="closeModalWindow"
+          title="cierra la ventana"
+          >Cancelar</BaseButton
+        >
+        <BaseButton
+          :outline="true"
+          :icon="['far', 'trash-alt']"
+          @click="resetForm"
+          title="borra todos los datos del formulario"
+          >Limpiar</BaseButton
+        >
+      </div>
     </div>
   </section>
 </template>
 
 <script>
+import BaseButton from '@/components/BaseButton.vue'
 import BaseInput from '@/components/BaseInput.vue'
 import BaseRadio from '@/components/BaseRadio.vue'
 import BaseSelect from '@/components/BaseSelect.vue'
 export default {
   name: 'NewPatient',
   components: {
+    BaseButton,
     BaseInput,
     BaseRadio,
     BaseSelect,
@@ -90,30 +143,57 @@ export default {
   },
   data() {
     return {
-      gender: '',
+      patient: {
+        name: '',
+        lastname: '',
+        dob: '',
+        gender: '',
+        clinic: '',
+        treatmentGoal: '',
+        cutout: '',
+        aligners: '',
+        retrainer: '',
+      },
       genderOptions: ['Masculino', 'Femenino'],
       treatmentGoalOptions: ['Estética', 'Oclusión', 'Estética y Oclusión'],
-      treatmentGoal: '',
-      cutout: '',
-      aligners: '',
-      retrainer: '',
     }
   },
   methods: {
     changeCutout(newValue) {
-      this.cutout = newValue
+      this.patient.cutout = newValue
     },
     changeAligners(newValue) {
-      this.aligners = newValue
+      this.patient.aligners = newValue
     },
     changeRetrainer(newValue) {
-      this.retrainer = newValue
+      this.patient.retrainer = newValue
+    },
+    savePatientData() {
+      console.log(this.patient)
+    },
+    closeModalWindow() {
+      this.$emit('close')
+    },
+    resetForm() {
+      this.patient = {
+        ...this.patient,
+        name: '',
+        lastname: '',
+        dob: '',
+        gender: '',
+        clinic: '',
+        treatmentGoal: '',
+        cutout: '',
+        aligners: '',
+        retrainer: '',
+      }
     },
   },
 }
 </script>
 
 <style lang="scss" scoped>
+$colorTextMain: #444444;
 $colorLigthGrey: #eeeeee;
 
 .modal {
@@ -127,10 +207,16 @@ $colorLigthGrey: #eeeeee;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: black;
+    background-color: rgba(68, 68, 68, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &__header {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin: 12px 0 6px;
   }
 }
 
@@ -176,7 +262,22 @@ $colorLigthGrey: #eeeeee;
     text-align: left;
     font-size: 14px;
     width: 100%;
-    margin: 12px 0 6px;
+  }
+}
+
+.buttons {
+  margin: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.icon {
+  &__container {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
   }
 }
 </style>

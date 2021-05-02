@@ -83,7 +83,7 @@
           </ul>
         </nav>
       </section>
-      <NewPatient :open="modal" />
+      <NewPatient :open="modal" @close="closeModal" />
     </main>
   </div>
 </template>
@@ -199,6 +199,9 @@ export default {
     },
     addNewPatient() {
       this.modal = true
+    },
+    closeModal() {
+      this.modal = false
     },
   },
 }

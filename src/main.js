@@ -23,6 +23,9 @@ import {
 import {
   faAddressCard,
   faCalendarAlt,
+  faSave,
+  faWindowClose,
+  faTrashAlt,
 } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -41,7 +44,10 @@ library.add(
   faSearch,
   faSort,
   faAddressCard,
-  faCalendarAlt
+  faCalendarAlt,
+  faSave,
+  faWindowClose,
+  faTrashAlt
 )
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
