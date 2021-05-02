@@ -53,7 +53,7 @@
         <PatientsList :patients="patientsToDisplay" />
         <nav class="registry__pagination">
           <ul class="pagination">
-            <li class="pagination__page prevPage" @click="prevPage">
+            <li class="pagination__page" @click="prevPage">
               <font-awesome-icon :icon="['fas', 'chevron-left']" />
             </li>
             <li
@@ -61,10 +61,11 @@
               :key="n"
               class="pagination__page"
               :class="{ 'pagination__page--current': currentPage === n }"
+              @click="setAsCurrentPage(n)"
             >
               {{ n }}
             </li>
-            <li class="pagination__page nextPage" @click="nextPage">
+            <li class="pagination__page" @click="nextPage">
               <font-awesome-icon :icon="['fas', 'chevron-right']" />
             </li>
           </ul>
@@ -94,14 +95,8 @@ export default {
       numberOfPatients: Object.keys(pacientes).length,
     }
   },
-  created() {
-    this.createPatientsArray()
-  },
   mounted() {
-    console.log(this.numberOfPatients)
-  },
-  updated() {
-    console.log(this.currentPage)
+    this.createPatientsArray()
   },
   computed: {
     patientsToDisplay() {
@@ -128,6 +123,9 @@ export default {
     nextPage() {
       if (this.currentPage * this.pageSize < this.patients.length)
         this.currentPage++
+    },
+    setAsCurrentPage(n) {
+      this.currentPage = n
     },
     getLiValue(ev) {
       console.log(ev.target.value)
@@ -248,16 +246,13 @@ $colorPrimary: #1a9cf2;
   gap: 12px;
 }
 
-.prevPage,
-.nextPage {
-  cursor: pointer;
-}
 .pagination {
   display: inline-flex;
   list-style-type: none;
   border: 1px solid $colorLigthGrey;
   border-radius: 6px;
   color: $colorTextLight;
+  cursor: pointer;
   &__page {
     width: 50px;
     height: 50px;
