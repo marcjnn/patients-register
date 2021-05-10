@@ -196,10 +196,8 @@ export default {
         ]
       })
       const data = [...header, ...patientsData]
-      console.log(data)
       const csvData =
         'data:text/csv;charset=utf-8,' + data.map((e) => e.join(',')).join('\n')
-      console.log(csvData)
 
       // download using <a> 'download' tag
       const encodedUri = encodeURI(csvData)
@@ -217,10 +215,7 @@ export default {
       this.patientsNew = false
     },
     openPatientsCard(id) {
-      console.log(id)
-      console.log('clicked')
       this.selectedPatient = this.patients.find((patient) => patient.id === id)
-      console.log(this.selectedPatient)
       this.patientsCard = true
     },
     closePatientsCardModal() {

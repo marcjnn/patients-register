@@ -16,14 +16,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        v-for="patient in patients"
-        :key="patient.id"
-        class="table__row"
-        @click="openPatientsCard(patient.id)"
-      >
+      <tr v-for="patient in patients" :key="patient.id" class="table__row">
         <td class="table__cell">
-          <BaseCard :initials="true">
+          <BaseCard
+            :initials="true"
+            @open-patiens-card="openPatientsCard(patient.id)"
+          >
             <template v-slot:image>
               <div>
                 {{
@@ -67,7 +65,10 @@
     <li v-for="patient in patients" :key="patient.id" class="patientCard">
       <div class="patientCard--container">
         <p class="basecard__container">
-          <BaseCard :initials="true">
+          <BaseCard
+            :initials="true"
+            @open-patiens-card="openPatientsCard(patient.id)"
+          >
             <template v-slot:image>
               <div>
                 {{

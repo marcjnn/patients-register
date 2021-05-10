@@ -1,5 +1,5 @@
 <template>
-  <article class="card">
+  <article class="card" @click="emitClick">
     <div class="image__container" :class="[{ initials: initials }]">
       <slot name="image"></slot>
     </div>
@@ -15,6 +15,11 @@ export default {
     initials: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    emitClick() {
+      this.$emit('open-patiens-card')
     },
   },
 }
